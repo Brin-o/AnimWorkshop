@@ -1,20 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class LRCharacter : MonoBehaviour
 {
-    float speed = 50;
+    public float speed = 50;
+    SpriteRenderer sprite;
     void Start()
     {
-        
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
-    // Update is called once per frame
+    float t;
     void Update()
     {
-        speed = Input.GetAxisRaw("Horizontal")*speed;
-        Vector2 newPos = new Vector2(transform.position.x + speed, transform.position.y);
+        t += Time.deltaTime;
+        var x = Input.GetAxisRaw("Horizontal") * speed;
+        if (x != 0)
+        {
+            // if (DOTween.IsTweening("wiggle") == false)
+            //     sprite.transform.DORotate(new Vector3(0, 0, -20), 0.1f, RotateMode.Fast).SetId("wiggle").SetLoops(0, LoopType.Yoyo);
+            var z = Mathf.Sin(t * 20) * 30;
+            sprite.transform.rotation = Quaternion.Euler(0, 0, z);
+        }
+        Vector2 newPos = new Vector2(transform.position.x + x, transform.position.y);
         transform.position = newPos;
     }
 }

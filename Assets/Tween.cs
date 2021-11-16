@@ -6,7 +6,12 @@ using DG.Tweening;
 
 public class Tween : MonoBehaviour
 {
-    public AnimationCurve curve;
+    public AnimationCurve curve1;
+
+    public AnimationCurve curve2;
+    public AnimationCurve curve3;
+
+
 
 
     Vector3 startPos;
@@ -22,7 +27,11 @@ public class Tween : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            transform.DOMoveX(9, 1).SetEase(curve);
+            //if(DOTween.IsTweening("xscale"))
+            transform.DOMoveX(9, 1).SetEase(curve1).OnComplete(() => { print("Hi"); });
+            //transform.DOScaleX(3, 0.3f).SetEase(curve1).SetId("xscale");
+            //transform.DOScaleY(3, 0.3f).SetEase(curve2);
+
         }
 
 

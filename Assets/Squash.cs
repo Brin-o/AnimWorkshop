@@ -33,7 +33,7 @@ public class Squash : MonoBehaviour
     {
         remapedSpeed = speed / maxSpeed;
         Vector2 newScale;
-        newScale.x = 1 - remapedSpeed / 3;
+        newScale.x = 1 - remapedSpeed / 8;
         newScale.y = 1 / newScale.x;
         transform.localScale = newScale;
 
